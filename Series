@@ -1,0 +1,50 @@
+1. Read a csv file
+        pd.read_csv("____")
+
+2. Convert datafram to Series
+        pd.read_csv("___", usecols=["column_name"]).squeeze("columns")
+
+3. Present data as a series
+        pd.Series(data=fruits, index=weekdays)
+
+3. Heads & tails method
+         file_name.head()
+         file_name.tail(10)
+
+4. Passing Series to built-in python functions:
+          len(Series_name)
+          type(Series_name)
+          list(Series_name)
+          sorted(Series_name)
+          dict(Series_name)
+          type(sorted(Series_name))
+          max(Series_name)
+          min(Series_name)
+
+5. Check for inclusion within series
+          "Bulbasaur" in pokemon --> False (because it looks at the index)
+          "Pikachu" in pokemon.values --> True
+
+6. Sort values method
+          google.sort_values()
+          google.sort_values(acsending=False).head()
+
+7. Sort index method
+          pd.read_csv("pokemon.csv", index_col="Name").squeeze("columns")
+          pokemon.sort_index()
+
+8. Extract series values by index position
+          pokemon.iloc[5:10] --> slice notation - selecing rows 27 through 35 --> integer position-based indexing
+          pokemon.iloc[[100, 200, 300]] --> passing a list of specific row indices, explicitly selecting rows 100, 200, 300 - grabbing exact positions
+
+9. Extract series values by index label
+        pokemon.loc["Mewtwo"] --> label-based indexing
+
+
+
+
+
+
+
+
+
