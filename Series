@@ -40,6 +40,10 @@
 9. Extract series values by index label
         pokemon.loc["Mewtwo"] --> label-based indexing
 
+10. The get method
+        pokemon.get("Digimon", "Nonexistent") --> preferable over loc, as it wont provide an error if the label is not found, will provide the supplied value
+
+
 
 
 
