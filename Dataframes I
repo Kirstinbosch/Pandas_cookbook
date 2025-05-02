@@ -1,0 +1,12 @@
+1. Methods & attributes between Series and DataFrames
+    Series_name.index  DataFrame_name.index
+    s.values           df.values --> returna data as a Numpy array
+    s.shape            df.shape --> returns a tuple representing the length
+    s.dtypes           df.dtypes --> returns the data types
+    s.hasnans          df.hasnans   --> returns true if any NaN
+                       df.columns --> Returns an Index object of column names (not avail for series
+    s.axes             df.axes --> returns a list
+    s.info()           df.info() --> displays summary
+
+    revenue.sum(axis="index") --> adds across rows
+    revenue.sum(axis="columns") --> sums across columns
