@@ -26,3 +26,16 @@
     nba.insert(loc=3, column="Something", value="Basketball") --> insert allows to select where to place
     nba["Salary Doubled"] = nba["Salary"].mul(2) --> doubles salary column and adds to a new one
     nba["New salary"] = nba["Salary"].sub(5000000)
+
+5. Drop rows with missing values
+    nba.dropna() --> drops rows with any missing values
+    nba.dropna(how="any") --> any missing cell
+    nba.dropna(how="all") --> completely nblank rows
+    nba.dropna(subset=["College"]) --> remove any row that has missing information in College column
+
+6. Fill in missing values with fillna method
+    nba["Salary"] = nba["Salary"].fillna(0) --> overwriting calls in the Salary column 
+    nba["College"].fillna(value="unknown") --> filled all values with unknown
+
+7. The astype method - to convert Series values to another type
+    
