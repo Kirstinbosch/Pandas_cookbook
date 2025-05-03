@@ -10,3 +10,19 @@
 
     revenue.sum(axis="index") --> adds across rows
     revenue.sum(axis="columns") --> sums across columns
+
+2. Select one column from a dataframe (a view)
+
+    nba.Team
+    nba["Player Name"] --> stick this this convention in general
+
+3. Select multiple columns from a dataframe (a view)
+    nba[["Name", "Team"]] --> list style
+    columns_to_select = ["Salary", "Team", "Name"]
+    nba["columns_to_select"] --> cleaner
+
+4. Add new column to a data frame
+    nba["Sport"] = "Basketball" --> adds sport column to end with 'Basketball', but this is static
+    nba.insert(loc=3, column="Something", value="Basketball") --> insert allows to select where to place
+    nba["Salary Doubled"] = nba["Salary"].mul(2) --> doubles salary column and adds to a new one
+    nba["New salary"] = nba["Salary"].sub(5000000)
