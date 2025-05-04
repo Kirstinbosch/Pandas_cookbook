@@ -38,4 +38,31 @@
     nba["College"].fillna(value="unknown") --> filled all values with unknown
 
 7. The astype method - to convert Series values to another type
+    nba.dtypes --> dtypes gives us the current types stored in each column
+    nba["Salary"] = nba["Salary"].astype(int) --> you NEED to overwrite the variable for the change to occur
+
+8. Category type --> columns with a limited number of unique values --> recuces memory consumption
+    nba["Position"] = nba["Position"].astype("category")
+
+9. How many unique values in a Series 
+    nba["Team"].nunique() --> looking at Team column in nba Series
+    nba.nunique() --> summarizes unique values for all columns
+
+10. Sort a data frame with the sort values
+    nba.sort_values(by="Name", ascending=False) --> largest to smallest
+    nba.sort_values("Salary", na_position="first")
+    nba.sort_values("Salary", na_position="first", ascending=False)
+    nba.sort_values(["Team", "Name"]) --> Pandas will sort by team, then by Name within the Team
+    nba.sort_values(by=["Team", "Name"], ascending=True)
+    nba.sort_values(by=["Team", "Name"], ascending=[True, False]) --> Team ascending, Name descending belonging to each team 
+
+11. Sort a data frame by its index
+        nba.sort_index() --> works with all sorts of parameters (int, dates...)
+        nba.sort_index(ascending=False)
+
+12. Rank values with the rank method
+    nba["Salary Rank"] = nba["Salary"].rank(ascending=False).astype(int)
+    nba.sort_values("Salary", ascending=False)
+
+
     
