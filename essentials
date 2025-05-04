@@ -33,12 +33,19 @@
 5. Text Manipulation & Inspection methods
       Manipulation:
           replace()
+                  string_methods["Job Title"] = string_methods["Job Title"].str.replace("Sr.", "Senior")
+                  df['Name'] = df['Name'].str.replace(r"[^a-zA-Z\s]", "", regex=True)
+
           split()
+                  string_methods[["Username", "Domain"]] = string_methods["Email"].str.split('@', expand=True)
+
           extract()
+                  string_methods["Area Code"] = string_methods["Phone"].str.extract(r"\((\d{3})\)")
+                  df['Year'] = df['Date'].str.extract(r"(\d{4})")
       Text Inspection:
-          startswith()
-          endswith()
-          contains()
-          len()
+          startswith()          employees_clean[employees_clean["City"].str.startswith("Los")]
+          endswith()            employees_clean[employees_clean["Last Name"].str.endswith("son")]
+          contains()            employees_clean[employees_clean["Department"].str.contains("ing")]
+          len()                 employees_clean["First Name"].str.len()
         
   
