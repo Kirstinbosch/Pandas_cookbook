@@ -1,0 +1,30 @@
+1. Reading & writing data
+  pd.read_csv()
+  pd.read_excel()
+  file_name.to_csv() --> export new data to csv
+
+2. Inspecting data
+  file_name.head() --> top
+  file_name.tail() --> bottom
+  file_name.info() --> general info
+  file_name.describe() --> nice stats summary
+  file_name.columns --> displays column names as List
+  file_name.dtypes --> displays types in table form
+  file_name.shape --> provides tuple of rows & columns
+
+3. Dealing with missing values
+  file_name.isnull().sum() --> tells us the nunber iof missing values per column
+  file_name.isna().sum()
+  file_name.dropna(how="all"/"any") --> drops complete rows or cells
+  file_name.fillna() --> fills cells with specificed info (only replaces NaN, not zeros)
+  sample["Age"] = sample["Age"].fillna(sample["Age"].mean()) (or .median, ..mode()[0] --> fills cell with stat
+
+  4. String standardization methodsemploy
+      applying to one column:
+        people_dirty["Name"] = people_dirty["Name"].str.title()
+        .str.lower()
+        .str.upper()
+        .str.capitalize()
+        .str.strip()
+        
+  
