@@ -19,12 +19,26 @@
   file_name.fillna() --> fills cells with specificed info (only replaces NaN, not zeros)
   sample["Age"] = sample["Age"].fillna(sample["Age"].mean()) (or .median, ..mode()[0] --> fills cell with stat
 
-  4. String standardization methodsemploy
+  4. String Standardization methods
       applying to one column:
         people_dirty["Name"] = people_dirty["Name"].str.title()
         .str.lower()
         .str.upper()
         .str.capitalize()
         .str.strip()
+      applying to more than one column (looping):
+        for col in ["Name", "Email", "City", "Location"]:
+          employees_dirty[col] = employees_dirty[col].str.title()
+
+5. Text Manipulation & Inspection methods
+      Manipulation:
+          replace()
+          split()
+          extract()
+      Text Inspection:
+          startswith()
+          endswith()
+          contains()
+          len()
         
   
