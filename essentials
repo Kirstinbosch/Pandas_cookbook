@@ -47,5 +47,8 @@
           endswith()            employees_clean[employees_clean["Last Name"].str.endswith("son")]
           contains()            employees_clean[employees_clean["Department"].str.contains("ing")]
           len()                 employees_clean["First Name"].str.len()
-        
+
+6. Duplicates
+      file_name.duplicated()
+      file_name.drop_duplicates()
   
