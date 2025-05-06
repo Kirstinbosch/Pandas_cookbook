@@ -22,5 +22,38 @@
       bond.loc["GoldenEye": "Octopussy", ["Actor", "Bond Actor Salary", "Year"]]
       bond.iloc[0,2] --> specifying intersection of row x column
 
-5. Overwrite Multiple Values in a DataFrame
+5. Overwrite Value in a DataFrame
       bond.loc["Diamonds Are Forever", "Actor"] = "Sir Sean Connery"
+
+6. Overwrite Multiple Values in a DataFrame
+      bond["Actor"] = bond["Actor"].replace("Sean Connery", "Sir Sean Connery")
+      is_sean_connery = bond["Actor"] == "Sean Connery"
+      bond.loc[is_sean_connery, "Actor"] = "Sir Sean Connery"
+
+7. Rename Index Labels or Columns in a DataFrame
+      bond.rename(columns={"Year": "Year of Release", "Box Office": "Revenue"}) --> use dictionaries {old:new}
+
+      swaps = {
+          "Dr.No": "Dr No",
+          "GoldenEye": "Golden Eye",
+          "The World Is Not Enough": "Best Bond Movie Ever"
+      }
+      bond.rename(index=swaps)
+
+      bond.columns = ["1", "2", "3", "4", "5", "6"] --> overwriting all the columns
+
+8. Delete Rows or Columns from a DataFrame
+      bond.drop(columns=["Box Office", "Budget"]) --> removes columns
+      bond.drop(index=["No Time to Die"]) --> removes rows
+      bond.pop("Actor") --> targets a column, muttational method
+      del bond["Year"]
+
+
+
+
+
+
+
+
+
+
