@@ -1,0 +1,26 @@
+1. The set_index and reset_index Methods
+      bond = bond.set_index("Film") 
+      bond.reset_index() --> set back to standard numrical index
+      bond.reset_index().set_index("Year") --> overwrite previous index witth new one
+
+2. Retrieve Rows by Index Position with iloc Accessor
+      bond.iloc[5] --> retrieves 6th row from df, provides series
+      bond.iloc[[15, 20]] --> for mutliple queries, make a list, provides a df
+      bond.iloc[4:8] --> provides rows 4 - 7
+
+3. Retrieve Rows by Index Label with loc Accessor
+      bond.loc["Goldfinger"] --> pulls out row as a series
+      bond.loc[["Octopussy", "Moonraker"]]
+      bond.loc["Diamonds Are Forever": "Moonraker"] --> slicing syntax, includes final index label, order matters
+      bond.loc["GoldenEye":]
+      bond.loc[:"On Her Majesty's Secret Service"]
+
+4. Second Arguments to loc and iloc Accessors
+      bond.loc["Diamonds Are Forever", "Director"]  --> extracting row x column
+      bond.loc[["Octopussy", "GoldenEye"], "Director"] --> provides directors for both movies
+      bond.loc[["Octopussy", "GoldenEye"], "Director":"Budget"]
+      bond.loc["GoldenEye": "Octopussy", ["Actor", "Bond Actor Salary", "Year"]]
+      bond.iloc[0,2] --> specifying intersection of row x column
+
+5. Overwrite Multiple Values in a DataFrame
+      bond.loc["Diamonds Are Forever", "Actor"] = "Sir Sean Connery"
