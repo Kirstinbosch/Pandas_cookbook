@@ -1,0 +1,30 @@
+1. Common string methods
+      chicago["Position Title"].str.lower()
+      chicago["Position Title"].str.upper()
+      chicago["Position Title"].str.title()
+      chicago["Position Title"].str.len()
+      chicago["Position Title"].str.strip()
+
+      chicago["Department"].str.replace("MGMNT", "MANAGEMENT")
+
+2. Filtering with String Methods
+      water_workers = chicago["Position Title"].str.lower().str.contains("water")
+      chicago[water_workers]
+      starts_with_civil = chicago["Position Title"].str.lower().str.startswith("civil")
+      chicago.loc[starts_with_civil]
+      ends_with_iv = chicago["Position Title"].str.lower().str.endswith("iv")
+      chicago[ends_with_iv]
+
+3. String Methods on Index and Columns
+      chicago.index = chicago.index.str.strip().str.title()
+      chicago.columns = chicago.columns.str.upper()
+
+4. The split Method
+      "Water Rate Taker".split(" ") --> splits by a space (delimiter)
+
+      #the most common first words in job positions
+      chicago["Position Title"].str.split(" ").str.get(0).value_counts()
+
+5. The expand and n Parameters of the split Method
+      chicago[["Last Name", "First Name"]] = chicago["Name"].str.split(",", expand=True) --> converts into a df
+      chicago[["Primary Title", "Secondary Title"]]  = chicago["Position Title"].str.split(" ", expand=True, n=1) --> n defines the number of splits
