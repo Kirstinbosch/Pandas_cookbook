@@ -1,0 +1,61 @@
+1. Converting a date with datetime (memory optimization + utility)
+      pd.to_datetime(employees["Start Date"], format="%m/%d/%Y") --> convertin "Start Date" column within employees to datetime format, format "%m/%d/%Y" tells pandas what we are looking at
+      alternative
+      employees = pd.read_csv("employees.csv", parse_dates=["Start Date"], date_format="%m/%d/%Y")
+
+2. Converting a time with datetime (memory optimization + utility)
+      employees["Last Login Time"] = pd.to_datetime(employees["Last Login Time"], format="%H:%M %p").dt.time
+
+3. Filter a DataFrame based on a condition:
+      employees[employees["Gender"] == "Male"] --> filtering Male in gender column
+      employees[employees["Salary"] > 110000] --> filtering salaries > 110000
+      employees[employees["Start Date"] < "1985-01-01"] --> filtering dates (doesnt have to be same format)
+      employees["Last Login Time"] = employees["Last Login Time"]  < dt.time(12,0,0) --> need to import datetime as dt
+
+4. Filtering with more than one condition - AND
+      is_female = employees["Gender"] == "Female"
+      is_in_marketing = employees["Team"] == "Marketing"
+      employees[is_female & is_in_marketing]
+
+5. Filter with more than one condition - OR
+      is_senior_management = employees["Senior Management"] == True
+      started_in_80s = employees["Start Date"] < "1990-01-01"
+      employees[is_senior_management | started_in_80s]
+--> when you combine the & | operators use parenthesis to identify what comes first
+
+6. The isin method --> checks for value amoungst collection of several values
+      target_teams = employees["Team"].isin(["Legal", "Sales", "Product"])
+      employees[target_teams]
+
+7. The isnull and notnull methods
+      employees[employees["Team"].isnull()]
+      employees[employees["Team"].notnull()]
+
+8. The between method
+      employees[employees["Salary"].between(60000, 70000)]
+
+9. The duplicated method
+      employees[employees["First Name"].duplicated()]
+      employees[employees["First Name"].duplicated(keep="first")] --> tells us which suplicate to keep (i think)
+      employees[employees["First Name"].duplicated(keep="last")]
+      employees[employees["First Name"].duplicated(keep=False)] --> will mark all occurences as a duplicate
+      employees[~employees["First Name"].duplicated(keep=False)] --> booleans flipped around, trues for unique values
+
+10. The drop duplicates method
+      employees.drop_duplicates("Team", keep="last")
+
+11. The unique and nunique methods
+      employees["Gender"].unique()
+      employees["Team"].nunique() --> number of distinct values
+      
+
+
+
+
+
+
+
+
+
+
+      

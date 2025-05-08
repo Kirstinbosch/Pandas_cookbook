@@ -1,0 +1,91 @@
+1. The set_index and reset_index Methods
+      bond = bond.set_index("Film") 
+      bond.reset_index() --> set back to standard numrical index
+      bond.reset_index().set_index("Year") --> overwrite previous index witth new one
+
+2. Retrieve Rows by Index Position with iloc Accessor
+      bond.iloc[5] --> retrieves 6th row from df, provides series
+      bond.iloc[[15, 20]] --> for mutliple queries, make a list, provides a df
+      bond.iloc[4:8] --> provides rows 4 - 7
+
+3. Retrieve Rows by Index Label with loc Accessor
+      bond.loc["Goldfinger"] --> pulls out row as a series
+      bond.loc[["Octopussy", "Moonraker"]]
+      bond.loc["Diamonds Are Forever": "Moonraker"] --> slicing syntax, includes final index label, order matters
+      bond.loc["GoldenEye":]
+      bond.loc[:"On Her Majesty's Secret Service"]
+
+4. Second Arguments to loc and iloc Accessors
+      bond.loc["Diamonds Are Forever", "Director"]  --> extracting row x column
+      bond.loc[["Octopussy", "GoldenEye"], "Director"] --> provides directors for both movies
+      bond.loc[["Octopussy", "GoldenEye"], "Director":"Budget"]
+      bond.loc["GoldenEye": "Octopussy", ["Actor", "Bond Actor Salary", "Year"]]
+      bond.iloc[0,2] --> specifying intersection of row x column
+
+5. Overwrite Value in a DataFrame
+      bond.loc["Diamonds Are Forever", "Actor"] = "Sir Sean Connery"
+
+6. Overwrite Multiple Values in a DataFrame
+      bond["Actor"] = bond["Actor"].replace("Sean Connery", "Sir Sean Connery")
+      is_sean_connery = bond["Actor"] == "Sean Connery"
+      bond.loc[is_sean_connery, "Actor"] = "Sir Sean Connery"
+
+7. Rename Index Labels or Columns in a DataFrame
+      bond.rename(columns={"Year": "Year of Release", "Box Office": "Revenue"}) --> use dictionaries {old:new}
+
+      swaps = {
+          "Dr.No": "Dr No",
+          "GoldenEye": "Golden Eye",
+          "The World Is Not Enough": "Best Bond Movie Ever"
+      }
+      bond.rename(index=swaps)
+
+      bond.columns = ["1", "2", "3", "4", "5", "6"] --> overwriting all the columns
+
+8. Delete Rows or Columns from a DataFrame
+      bond.drop(columns=["Box Office", "Budget"]) --> removes columns
+      bond.drop(index=["No Time to Die"]) --> removes rows
+      bond.pop("Actor") --> targets a column, muttational method
+      del bond["Year"]
+
+9. Create Random Sample with the sample Method
+      bond.sample(n=5) --> pulls out random sample of 5
+      bond.sample(n=5, axis="rows") --> rows are default
+      bond.sample(n=5, axis="columns")
+
+10. The nsmallest and nlargest Methods
+      bond.nlargest(n=4, columns="Box Office") alternative: bond.sort_values("Box Office", ascending=False).head(4)
+      bond["Box Office"].nlargest(4)
+      bond.nsmallest(3, columns="Bond Actor Salary")
+      bond["Bond Actor Salary"].nsmallest(3)
+
+11. Filtering with the where Method
+      bond.where(actor_is_sean_connery) --> pass in the condition
+
+12. The apply Method with DataFrames -- accepts function as an argument (REVIEW)      
+      bond["Actor"].apply(len)
+
+      def rank_movie(row):
+          year = row.loc["Year"]
+          actor = row.loc["Actor"]
+          budget = row.loc["Budget"]
+    
+          if year > 1980 and year < 1990:
+              return "Great 80's flick!"
+    
+          if actor == "Pierce Brosman":
+              return "Best Bond ever!"
+    
+          if budget > 100:
+              return "Expensive movie, fun!"
+
+bond.apply(rank_movie, axis="columns")
+      
+
+
+
+
+
+
+
+

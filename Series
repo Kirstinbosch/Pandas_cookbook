@@ -1,0 +1,88 @@
+1. Read a csv file
+        pd.read_csv("____")
+
+2. Convert datafram to Series
+        pd.read_csv("___", usecols=["column_name"]).squeeze("columns")
+
+3. Present data as a series
+        pd.Series(data=fruits, index=weekdays)
+
+3. Heads & tails method
+         file_name.head()
+         file_name.tail(10)
+
+4. Passing Series to built-in python functions:
+          len(Series_name)
+          type(Series_name)
+          list(Series_name)
+          sorted(Series_name)
+          dict(Series_name)
+          type(sorted(Series_name))
+          max(Series_name)
+          min(Series_name)
+
+5. Check for inclusion within series
+          "Bulbasaur" in pokemon --> False (because it looks at the index)
+          "Pikachu" in pokemon.values --> True
+
+6. Sort values method
+          google.sort_values()
+          google.sort_values(acsending=False).head()
+
+7. Sort index method
+          pd.read_csv("pokemon.csv", index_col="Name").squeeze("columns")
+          pokemon.sort_index()
+
+8. Extract series values by index position
+          pokemon.iloc[5:10] --> slice notation - selecing rows 27 through 35 --> integer position-based indexing
+          pokemon.iloc[[100, 200, 300]] --> passing a list of specific row indices, explicitly selecting rows 100, 200, 300 - grabbing exact positions
+
+9. Extract series values by index label
+        pokemon.loc["Mewtwo"] --> label-based indexing
+
+10. The get method
+        pokemon.get("Digimon", "Nonexistent") --> preferable over loc, as it wont provide an error if the label is not found, will provide the supplied value
+
+11. Overwrite a series value 
+        pokemon.iloc[0] = "Borisaur"
+        pokemon.iloc[[1, 2, 4]] = ["Firemon", "Blazemon", "Flamemon"]
+
+12. The copy method
+        pokemon_series = pokemon_df.squeeze("columns").copy()
+
+13. Maths methods
+        google.count()
+        google.sum()
+        google.sum()
+        google.max()
+        google.min()
+        google.product()
+        google.std()
+        google.median()
+        google.mode()
+        google.describe()
+
+14. Broadcasting - applying the same mathematical method across the series
+        google.add(10) OR google + 10
+        google.sub(30) OR google -30
+        google.mul(1.25) OR google * 1.25
+        google.div(2) OR google / 2
+
+15. The value counts method
+        pokemon.value_counts() --> descending by default
+        pokemon.value_counts(normalize=True) --> puts it in proportion
+        pokemon.value_counts(normalize=True) * 100 --> provides a %
+
+16. The apply method
+        pokemon.apply(len)
+
+17. The map method --> maps series values to another piece of data in another dataset
+        create a dictionary where a common key exists between the dict and the series
+        pokemon.map(attack_powers)
+
+
+
+
+
+
+

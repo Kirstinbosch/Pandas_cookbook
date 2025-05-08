@@ -1,0 +1,68 @@
+1. Methods & attributes between Series and DataFrames
+    Series_name.index  DataFrame_name.index
+    s.values           df.values --> returna data as a Numpy array
+    s.shape            df.shape --> returns a tuple representing the length
+    s.dtypes           df.dtypes --> returns the data types
+    s.hasnans          df.hasnans   --> returns true if any NaN
+                       df.columns --> Returns an Index object of column names (not avail for series
+    s.axes             df.axes --> returns a list
+    s.info()           df.info() --> displays summary
+
+    revenue.sum(axis="index") --> adds across rows
+    revenue.sum(axis="columns") --> sums across columns
+
+2. Select one column from a dataframe (a view)
+
+    nba.Team
+    nba["Player Name"] --> stick this this convention in general
+
+3. Select multiple columns from a dataframe (a view)
+    nba[["Name", "Team"]] --> list style
+    columns_to_select = ["Salary", "Team", "Name"]
+    nba["columns_to_select"] --> cleaner
+
+4. Add new column to a data frame
+    nba["Sport"] = "Basketball" --> adds sport column to end with 'Basketball', but this is static
+    nba.insert(loc=3, column="Something", value="Basketball") --> insert allows to select where to place
+    nba["Salary Doubled"] = nba["Salary"].mul(2) --> doubles salary column and adds to a new one
+    nba["New salary"] = nba["Salary"].sub(5000000)
+
+5. Drop rows with missing values
+    nba.dropna() --> drops rows with any missing values
+    nba.dropna(how="any") --> any missing cell
+    nba.dropna(how="all") --> completely nblank rows
+    nba.dropna(subset=["College"]) --> remove any row that has missing information in College column
+
+6. Fill in missing values with fillna method
+    nba["Salary"] = nba["Salary"].fillna(0) --> overwriting calls in the Salary column 
+    nba["College"].fillna(value="unknown") --> filled all values with unknown
+
+7. The astype method - to convert Series values to another type
+    nba.dtypes --> dtypes gives us the current types stored in each column
+    nba["Salary"] = nba["Salary"].astype(int) --> you NEED to overwrite the variable for the change to occur
+
+8. Category type --> columns with a limited number of unique values --> recuces memory consumption
+    nba["Position"] = nba["Position"].astype("category")
+
+9. How many unique values in a Series 
+    nba["Team"].nunique() --> looking at Team column in nba Series
+    nba.nunique() --> summarizes unique values for all columns
+
+10. Sort a data frame with the sort values
+    nba.sort_values(by="Name", ascending=False) --> largest to smallest
+    nba.sort_values("Salary", na_position="first")
+    nba.sort_values("Salary", na_position="first", ascending=False)
+    nba.sort_values(["Team", "Name"]) --> Pandas will sort by team, then by Name within the Team
+    nba.sort_values(by=["Team", "Name"], ascending=True)
+    nba.sort_values(by=["Team", "Name"], ascending=[True, False]) --> Team ascending, Name descending belonging to each team 
+
+11. Sort a data frame by its index
+        nba.sort_index() --> works with all sorts of parameters (int, dates...)
+        nba.sort_index(ascending=False)
+
+12. Rank values with the rank method
+    nba["Salary Rank"] = nba["Salary"].rank(ascending=False).astype(int)
+    nba.sort_values("Salary", ascending=False)
+
+
+    
